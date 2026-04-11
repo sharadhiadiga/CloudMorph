@@ -64,7 +64,7 @@ def build_image(path, image_name):
     run_command(cmd)
 
 
-# ---------- Tag image ----------
+# ---------- Tag image (IMPORTANT) ----------
 def tag_image(image_name):
     image_url = f"gcr.io/{PROJECT_ID}/{image_name}"
     cmd = f"docker tag {image_name} {image_url}"
@@ -72,18 +72,12 @@ def tag_image(image_name):
     return image_url
 
 
-# # ---------- Push image ----------
-# def push_image(image_url):
-#     cmd = f"docker push {image_url}"
-#     run_command(cmd)
-
-
 # ---------- MAIN FUNCTION ----------
 def docker_module(data):
 
     print("\n--- Docker Module Started ---")
 
-    # Unique image name (important)
+    # Unique image name
     unique_id = str(uuid.uuid4())[:6]
     image_name = f"{data['app_name']}-{unique_id}"
 
@@ -95,18 +89,17 @@ def docker_module(data):
     build_image(data["source_path"], image_name)
     print("Image built")
 
-    # Step 3: Tag
+    # Step 3: Tag (this gives cloud-style URL)
     image_url = tag_image(image_name)
-    print("Image tagged")
+    print("Image tagged (simulated cloud URL)")
 
-    # Step 4: Push
-    # push_image(image_url)
-    # print("Image pushed")
+    # ❌ Step 4 REMOVED (no push)
 
-    # Step 5: Update data
+    # Step 4: Update data
     data["dockerfile_path"] = dockerfile_path
     data["image_name"] = image_name
     data["image_url"] = image_url
+    
 
     print("--- Docker Module Completed ---\n")
 
