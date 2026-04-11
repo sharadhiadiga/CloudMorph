@@ -5,9 +5,7 @@ import { ClipboardList, CheckCircle2 } from 'lucide-react';
 const ManualActions = ({ actions }) => {
   // If no manual actions, show standard best practices as requested
   const displayActions = (actions && actions.length > 0) ? actions : [
-    "[MANUAL] Implement environment-specific secrets management.",
-    "[MANUAL] Configure automated health monitoring and alerts.",
-    "[MANUAL] Integrate CI/CD security scanning tools."
+    "[MANUAL] No manual steps required"
   ];
 
   return (

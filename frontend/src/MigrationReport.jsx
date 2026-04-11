@@ -24,40 +24,20 @@ const MigrationReport = () => {
     setData(null);
 
     try {
-      // Simulate real latency
-      await new Promise(resolve => setTimeout(resolve, 3000));
+      // Send the dynamic repo URL to the new Flask API backend
+      const response = await fetch('http://localhost:5000/api/migrate', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ repo_url: repoUrl })
+      });
+
+      if (!response.ok) {
+        throw new Error(`API error: ${response.statusText}`);
+      }
+
+      const backendResult = await response.json();
       
-      const mockResult = {
-        "app_name": "inventory-api",
-        "stack": "node",
-        "port": 3000,
-        "source_path": "./src/components/api",
-        "dockerfile_path": "./Dockerfile",
-        "image_name": "inventory-api-v1",
-        "image_url": "gcr.io/cloudmorph-ai/inventory-api:v1",
-        "terraform_path": "./infra/main.tf",
-        "deployment_url": "https://inventory-api.cloudmorph.run",
-        "logs": [
-          "[INFO] Migration pipeline started.",
-          "[INFO] Analysis phase completed successfully.",
-          "[SUCCESS] Docker image built and available.",
-          "[INFO] Infrastructure configuration generated via Terraform.",
-          "[SUCCESS] Deployment completed successfully.",
-          "[SUMMARY] The application 'inventory-api' was successfully analyzed and containerized and deployed to the target cloud environment using a Node.js stack. The primary services are operational with a verified deployment endpoint.",
-          "[RISK_LOW] No major risks identified. The system appears stable and production-ready.",
-          "[MANUAL] Configure production environment variables and implement secure secrets management.",
-          "[MANUAL] Set up cloud monitoring and automated alerting (e.g., logs, performance metrics).",
-          "[MANUAL] Implement a CI/CD pipeline to automate future application deployments.",
-          "[MANUAL] Configure custom domain and validate DNS routing records for the live service.",
-          "[MANUAL] Perform security hardening including authentication and rate limiting configuration.",
-          "[SUGGESTION] Use PM2 for Node.js process management in production.",
-          "[INFO] Container image stored at: gcr.io/cloudmorph-ai/inventory-api:v1",
-          "[INFO] Application live at: https://inventory-api.cloudmorph.run",
-          "[AI] CloudMorph-AI analysis complete. Repository matches CloudNative standards. Auto-scaling is pre-configured based on observed Node.js thread limits."
-        ]
-      };
-      
-      setData(mockResult);
+      setData(backendResult);
     } catch (err) {
       console.error(err);
     } finally {
@@ -162,15 +142,14 @@ const MigrationReport = () => {
             )}
 
             {data && !loading && (() => {
-              // Strict Filtering Logic
-              const summary = data.logs.find(log => log.startsWith('[SUMMARY]'));
-              const risks = data.logs.filter(log => log.startsWith('[RISK_'));
-              const manual = data.logs.filter(log => log.startsWith('[MANUAL]'));
-              const traceLogs = data.logs.filter(log => 
-                !log.startsWith('[SUMMARY]') && 
-                !log.startsWith('[RISK_') && 
-                !log.startsWith('[MANUAL]') &&
-                !log.startsWith('[AI]') // Exclude AI signature from trace
+              const logs = data.logs || [];
+              const summary = logs.find(l => l.startsWith("[SUMMARY]"));
+              const risks = logs.filter(l => l.includes("[RISK"));
+              const manual = logs.filter(l => l.includes("[MANUAL]"));
+              const traceLogs = logs.filter(l =>
+                l.includes("[INFO]") ||
+                l.includes("[SUCCESS]") ||
+                l.includes("[ERROR]")
               );
 
               return (

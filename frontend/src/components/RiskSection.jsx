@@ -59,11 +59,11 @@ const RiskSection = ({ risks }) => {
     return (
       <div className="bg-white dark:bg-white/5 border border-black/10 dark:border-white/10 rounded-3xl p-8 text-center space-y-4">
         <div className="mx-auto w-12 h-12 bg-emerald-500/10 rounded-full flex items-center justify-center">
-           <Info className="w-6 h-6 text-emerald-500" />
+          <Info className="w-6 h-6 text-emerald-500" />
         </div>
         <div className="space-y-1">
           <h4 className="font-bold text-slate-800 dark:text-white">System Integrity Verified</h4>
-          <p className="text-sm text-slate-400 dark:text-white/40">No major risks identified. System appears stable and production-ready.</p>
+          <p className="text-sm text-slate-400 dark:text-white/40">No major risks identified</p>
         </div>
       </div>
     );
