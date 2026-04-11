@@ -1,5 +1,5 @@
 """
-Deployment Module — CloudMorph-AI
+Deployment Module — CloudMorph
 Responsible for setting: deployment_url
 """
 

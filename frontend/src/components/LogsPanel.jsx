@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Info, CheckCircle, AlertTriangle, XCircle, Zap, Cpu, HelpCircle, Terminal } from 'lucide-react';
 
@@ -49,7 +49,6 @@ const LOG_TYPES = {
 };
 
 const LogEntry = ({ content }) => {
-  // Extract type from string e.g. [INFO] Analysis phase completed
   const match = content.match(/^\[(.*?)\]\s?(.*)$/);
   const type = match ? match[1] : 'INFO';
   const message = match ? match[2] : content;
@@ -59,9 +58,9 @@ const LogEntry = ({ content }) => {
 
   return (
     <motion.div
-      initial={{ opacity: 0, x: -20 }}
+      initial={{ opacity: 0, x: -10 }}
       animate={{ opacity: 1, x: 0 }}
-      exit={{ opacity: 0, scale: 0.95 }}
+      layout
       className={`flex items-start gap-4 p-4 rounded-xl border ${config.bg} ${config.border} ${config.glow || ''} group transition-all duration-300 hover:scale-[1.01]`}
     >
       <div className={`mt-1 p-1.5 rounded-lg ${config.bg}`}>
@@ -82,6 +81,14 @@ const LogEntry = ({ content }) => {
 };
 
 const LogsPanel = ({ logs }) => {
+  const scrollRef = useRef(null);
+
+  useEffect(() => {
+    if (scrollRef.current) {
+      scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
+    }
+  }, [logs]);
+
   return (
     <div className="space-y-4 opacity-70 hover:opacity-100 transition-opacity duration-500">
       <div className="flex items-center gap-3 mb-2 px-1">
@@ -90,8 +97,11 @@ const LogsPanel = ({ logs }) => {
       </div>
 
       <div className="bg-white/50 dark:bg-white/5 border border-black/5 dark:border-white/10 rounded-2xl overflow-hidden flex flex-col max-h-[400px] shadow-sm transition-all duration-300">
-        <div className="p-6 overflow-y-auto space-y-2 scroll-smooth custom-scrollbar bg-white/30 dark:bg-transparent">
-          <AnimatePresence mode="popLayout">
+        <div 
+          ref={scrollRef}
+          className="p-6 overflow-y-auto space-y-2 scroll-smooth custom-scrollbar bg-white/30 dark:bg-transparent"
+        >
+          <AnimatePresence mode="popLayout" initial={false}>
             {logs.map((log, index) => (
               <LogEntry key={`${index}-${log}`} content={log} />
             ))}

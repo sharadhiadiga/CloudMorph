@@ -1,5 +1,5 @@
 """
-Dockerization Module — CloudMorph-AI
+Dockerization Module — CloudMorph
 Responsible for setting: dockerfile_path, image_name, image_url
 """
 
@@ -23,7 +23,7 @@ def dockerize(data: dict) -> dict:
 
     # In LIVE mode, we should dynamically generate the URL instead of leaving it empty
     if not data.get("image_url") and "image_url" not in data:
-        data["image_url"] = f"gcr.io/cloudmorph-ai/{app_name}:v1"
+        data["image_url"] = f"gcr.io/cloudmorph/{app_name}:v1"
     elif "image_url" in data and not data["image_url"]:
         # Mock sets it deliberately empty to test failures
         pass

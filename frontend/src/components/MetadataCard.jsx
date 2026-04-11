@@ -18,7 +18,7 @@ const MetadataField = ({ label, value, icon: Icon }) => {
           <Icon className="w-3 h-3" />
           {label}
         </div>
-        <button 
+        <button
           onClick={handleCopy}
           className="p-1 px-1.5 rounded-md hover:bg-slate-200 dark:hover:bg-white/10 transition-colors text-slate-300 dark:text-white/30 hover:text-accent-cyan"
           title={value}
@@ -55,7 +55,7 @@ const MetadataCard = ({ data }) => {
   }, [data.app_name]);
 
   return (
-    <motion.div 
+    <motion.div
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       className="bg-white dark:bg-white/5 border border-black/10 dark:border-white/10 backdrop-blur-xl p-6 rounded-3xl shadow-xl shadow-purple-500/5 transition-colors duration-300"

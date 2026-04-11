@@ -1,5 +1,5 @@
 """
-Terraform Module — CloudMorph-AI
+Terraform Module — CloudMorph
 Responsible for setting: terraform_path
 """
 

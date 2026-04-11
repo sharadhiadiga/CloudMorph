@@ -7,7 +7,8 @@ const ThemeToggle = () => {
     if (typeof window !== 'undefined') {
       const saved = localStorage.getItem('theme');
       if (saved) return saved === 'dark';
-      return window.matchMedia('(prefers-color-scheme: dark)').matches;
+      // Default to true (Dark Mode) for a more premium AI feel
+      return true;
     }
     return true;
   });

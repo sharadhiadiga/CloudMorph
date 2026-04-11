@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-CloudMorph-AI -- Main Pipeline Entry Point
+CloudMorph -- Main Pipeline Entry Point
 Validates the full pipeline: analysis -> docker -> terraform -> deploy -> report
 
 Includes:
@@ -139,7 +139,7 @@ def get_mock_data(case: str = "success") -> dict:
         "source_path":     "./src",
         "dockerfile_path": "./Dockerfile",
         "image_name":      "inventory-api-v1",
-        "image_url":       "gcr.io/cloudmorph-ai/inventory-api:v1",
+        "image_url":       "gcr.io/cloudmorph/inventory-api:v1",
         "terraform_path":  "./infra/main.tf",
         "deployment_url":  "https://inventory-api.cloudmorph.run",
         "logs":            [],
@@ -296,7 +296,7 @@ TEST_CASES = [
 
 if __name__ == "__main__":
     print("\n" + "="*60)
-    print("  CloudMorph-AI -- Full Pipeline Validation")
+    print("  CloudMorph -- Full Pipeline Validation")
     print("="*60)
 
     all_results = {}
