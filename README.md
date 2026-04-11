@@ -1,5 +1,3 @@
-# ![CloudMorph Banner](/.gemini/antigravity/brain/7ec83ff0-69db-41d0-84a7-7779ba9e6c70/cloudmorph_banner_1775906636557.png)
-
 # 🌩️ CloudMorph
 > **Automated Enterprise Cloud Migration & Intelligence Platform**
 
