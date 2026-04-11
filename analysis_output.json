@@ -1,0 +1,12 @@
+{
+  "app_name": "flasky-master",
+  "stack": "python",
+  "port": 5000,
+  "source_path": "flasky-master.zip",
+  "dockerfile_path": "",
+  "image_name": "",
+  "image_url": "",
+  "terraform_path": "",
+  "deployment_url": "",
+  "logs": []
+}
