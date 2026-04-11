@@ -18,3 +18,14 @@ def get_all_files(directory):
             rel_path = os.path.relpath(full_path, directory) 
             file_paths.append(rel_path) 
     return file_paths 
+<<<<<<< HEAD
+=======
+ 
+import git 
+ 
+def clone_repo(repo_url, clone_to="cloned_app"): 
+    if os.path.exists(clone_to): 
+        shutil.rmtree(clone_to) 
+    git.Repo.clone_from(repo_url, clone_to) 
+    return clone_to 
+>>>>>>> dd1ed66b690aad1c14057bcaa39a951631b7c0b8
