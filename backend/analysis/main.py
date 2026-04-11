@@ -3,7 +3,7 @@ import sys
 import json
 import os
 from .extractor import extract_zip, get_all_files
-from .detector import detect_stack, detect_port, detect_app_name
+from .detector import detect_stack, detect_port, detect_app_name, detect_database
 
 def analyze_application(source_path):
     print(f"[Analysis] Starting analysis of: {source_path}")
@@ -17,6 +17,8 @@ def analyze_application(source_path):
     print(f"[Analysis] Suggested port: {port}")
     app_name = detect_app_name(source_path)
     print(f"[Analysis] App name: {app_name}")
+    database_type = detect_database(extract_path)
+    print(f"[Analysis] Detected database: {database_type}")
     result = {
         "app_name": app_name,
         "stack": stack,
@@ -27,6 +29,8 @@ def analyze_application(source_path):
         "image_url": "",
         "terraform_path": "",
         "deployment_url": "",
+        "database_type": database_type,
+        "database_config_path": "",
         "logs": []
     }
     with open("analysis_output.json", "w") as f:
@@ -36,7 +40,7 @@ def analyze_application(source_path):
 
 if __name__ == "__main__":
     if len(sys.argv) < 2:
-        print("Usage: python backend/analysis/main.py <zip-file-path>")
+        print("Usage: python -m backend.analysis.main <zip-file-path>")
         sys.exit(1)
     result = analyze_application(sys.argv[1])
     print("\n" + "="*50)
