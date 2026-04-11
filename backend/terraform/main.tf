@@ -1,5 +1,5 @@
 provider "google" {
-  project = "your-project-id"
+  project = "cloud-hackathon-493005"
   region  = "asia-south1"
 }
 
@@ -10,7 +10,7 @@ resource "google_cloud_run_service" "app" {
   template {
     spec {
       containers {
-        image = "gcr.io/your-project-id/test-app"
+        image = "gcr.io/cloud-hackathon-493005/test-app"
       }
     }
   }

@@ -22,10 +22,10 @@ def generate_tf(config):
 # TEST (you can remove later)
 if __name__ == "__main__":
     config = {
-        "project_id": "your-project-id",
+        "project_id": "cloud-hackathon-493005",
         "region": "asia-south1",
         "app_name": "test-app",
-        "image_url": "gcr.io/your-project-id/test-app"
+        "image_url": "gcr.io/cloud-hackathon-493005/test-app"
     }
 
     generate_tf(config)
