@@ -3,12 +3,12 @@
 ## Automated Enterprise Cloud Migration & Intelligence Platform
 
 
-# 📖 Overview
+#  Overview
 
 CloudMorph is an AI-powered DevOps orchestration platform designed to transform legacy repositories into cloud-native architectures. It intelligently analyzes existing repositories, detects technology stacks, audits dependencies, identifies migration risks, and simulates cloud migration workflows through real-time streaming. The platform also generates enterprise-grade migration reports with actionable recommendations, making cloud adoption faster, safer, and more efficient.
 
 
-# ✨ Features
+#  Features
 
 ## 🧠 Intelligence Phase
 
