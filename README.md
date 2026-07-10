@@ -101,52 +101,87 @@ Professional migration report containing:
 
 ## Prerequisites
 
-- Python 3.8+
-- Node.js 16+
+- Python 3.8 or later
+- Node.js 16 or later
 - npm or Yarn
+- Git
 
-### Backend Setup
+### Clone the Repository
 
 ```bash
-# Clone the repository
 git clone https://github.com/sharadhiadiga/CloudMorph.git
 
-# Navigate to project
 cd CloudMorph
+```
 
-# Create virtual environment
+---
+
+## Backend Setup
+
+### Create a Virtual Environment
+
+```bash
 python -m venv venv
+```
 
-# Activate environment
+### Activate the Virtual Environment
 
-# Windows
+**Windows**
+
+```bash
 venv\Scripts\activate
+```
 
-# macOS/Linux
+**macOS/Linux**
+
+```bash
 source venv/bin/activate
+```
 
-# Install dependencies
+### Install Python Dependencies
+
+```bash
 pip install flask flask-cors
+```
 
-# Start backend
+### Start the Backend Server
+
+```bash
 python server.py
 ```
 
-### Frontend Setup
+---
+
+## Frontend Setup
+
+Open a new terminal and navigate to the frontend directory:
 
 ```bash
 cd frontend
+```
 
+### Install Dependencies
+
+```bash
 npm install
+```
 
+### Start the Development Server
+
+```bash
 npm run dev
 ```
 
-Open your browser and visit:
+
+## Access the Application
+
+Once both the backend and frontend are running, open your browser and visit:
 
 ```
 http://localhost:5173
 ```
+
+The frontend communicates with the Flask backend running through `server.py` to perform repository analysis, stream migration progress, and generate cloud migration reports.
 
 ---
 
